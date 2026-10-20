@@ -65,6 +65,42 @@ export function ArticleNav({
   );
 }
 
+/**
+ * The article's own internal links from the manuscript, already filtered
+ * to destinations that are live (see [slug]/page.tsx).
+ */
+export function FurtherReading({
+  links,
+}: {
+  links: { label: string; href: string }[];
+}) {
+  if (links.length === 0) return null;
+
+  return (
+    <div className="border-t border-neutral-200 pt-8">
+      <h2 className="font-heading text-foreground text-lg font-semibold">
+        Further Reading
+      </h2>
+      <ul className="mt-4 flex flex-col gap-3">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              className="group text-foreground hover:text-primary-text inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-150"
+            >
+              <ArrowRight
+                aria-hidden
+                className="text-muted-foreground group-hover:text-primary-text size-4 shrink-0 transition-transform duration-150 group-hover:translate-x-1"
+              />
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function RelatedArticles({
   articles,
   readingTimes,

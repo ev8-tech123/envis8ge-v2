@@ -12,7 +12,11 @@ import { isPublished, publishedArticles } from "../_lib/publish";
 import { ArticleBody } from "../_components/article-body";
 import { ArticleCta } from "../_components/article-cta";
 import { ArticleHero } from "../_components/article-hero";
-import { ArticleNav, RelatedArticles } from "../_components/article-nav";
+import {
+  ArticleNav,
+  FurtherReading,
+  RelatedArticles,
+} from "../_components/article-nav";
 import { AuthorBio } from "../_components/author-bio";
 import { KeyTakeaways, PullQuote } from "../_components/content-blocks";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
@@ -112,6 +116,14 @@ export default async function BlogArticlePage({
     related.length > 0
       ? related
       : published.filter((a) => a.slug !== slug).slice(0, 3);
+  // Internal links to other blog posts resolve against the published set,
+  // so a link to a scheduled article is omitted until it goes live; the
+  // list shows the target's real title.
+  const furtherReading = (article.internalLinks ?? []).flatMap((link) => {
+    if (!link.href.startsWith("/blog/")) return [link];
+    const target = published.find((a) => `/blog/${a.slug}` === link.href);
+    return target ? [{ label: target.title, href: link.href }] : [];
+  });
   const relatedReadingTimes = Object.fromEntries(
     relatedFallback.map((a) => [
       a.slug,
@@ -268,6 +280,8 @@ export default async function BlogArticlePage({
                 <PullQuote quote={article.verdict.pullQuote} />
               )}
             </div>
+
+            <FurtherReading links={furtherReading} />
 
             <ArticleCta
               heading={article.cta.heading}

@@ -79,4 +79,11 @@ export interface Article {
   /** `heading` overrides the closing section's default "Verdict" title. */
   verdict: { heading?: string; paragraphs: string[]; pullQuote: string };
   cta: { heading: string; body: string; buttonText: string; href: string };
+  /**
+   * The manuscript's "Internal links" for the article, rendered as a
+   * Further Reading list. A `/blog/<slug>` link is shown only once that
+   * article is published (see [slug]/page.tsx), so a link to a scheduled
+   * post appears automatically on its publish date and never 404s.
+   */
+  internalLinks?: { label: string; href: string }[];
 }

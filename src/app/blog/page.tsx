@@ -52,7 +52,12 @@ export default function BlogIndexPage() {
   // Only published articles appear on the public Blog page, newest ->
   // oldest. Scheduled (future-dated) articles are omitted entirely until
   // their publishAt passes. The newest of these is the Featured card.
-  const visibleArticles = publishedArticles(articles);
+  // internalLinks is dropped because the listing is a client component:
+  // its props are serialised into the page, and a link to a scheduled
+  // article would otherwise expose that URL early.
+  const visibleArticles = publishedArticles(articles).map(
+    (article) => ({ ...article, internalLinks: undefined })
+  );
   const readingTimes = Object.fromEntries(
     visibleArticles.map((a) => [
       a.slug,
