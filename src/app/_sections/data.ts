@@ -290,7 +290,7 @@ export const agencyServices = {
       title: "Website Development",
       href: "https://envis8ge.com/websites",
       description:
-        "Copy, imagery and video produced and scheduled for your social channels, so your brand shows up consistently without it falling on your team.",
+        "Custom websites designed and built to showcase your business, strengthen your online presence, and turn visitors into customers.",
     },
     {
       title: "Landing Page Dev",
