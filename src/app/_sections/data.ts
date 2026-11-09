@@ -277,6 +277,7 @@ export const agencyServices = {
   items: [
     {
       title: "Lead Generation",
+      href: "https://envis8ge.com/leadgenads",
       description:
         "Paid social campaigns planned, built and optimised around real enquiries, not just impressions — with ongoing testing to keep results moving in the right direction.",
     },
@@ -286,7 +287,8 @@ export const agencyServices = {
         "A content plan built around who you're speaking to, which platforms they're on, and what you want them to do next.",
     },
     {
-      title: "Content Management",
+      title: "Website Development",
+      href: "https://envis8ge.com/websites",
       description:
         "Copy, imagery and video produced and scheduled for your social channels, so your brand shows up consistently without it falling on your team.",
     },

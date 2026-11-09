@@ -55,16 +55,31 @@ export function AgencyServices() {
               }
               className="h-full"
             >
-              <Card className="border-primary/0 hover:border-primary h-full border transition-[box-shadow,border-color] duration-[220ms] hover:shadow-lg">
-                <CardHeader>
-                  <CardTitle>{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
+              {"href" in item ? (
+                <a href={item.href} className="block h-full">
+                  <Card className="border-primary/0 hover:border-primary h-full border transition-[box-shadow,border-color] duration-[220ms] hover:shadow-lg">
+                    <CardHeader>
+                      <CardTitle>{item.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground text-sm">
+                        {item.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </a>
+              ) : (
+                <Card className="border-primary/0 hover:border-primary h-full border transition-[box-shadow,border-color] duration-[220ms] hover:shadow-lg">
+                  <CardHeader>
+                    <CardTitle>{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground text-sm">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
             </motion.div>
           ))}
         </motion.div>
